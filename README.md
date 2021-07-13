@@ -1,5 +1,5 @@
 # UberSaw
-UberSaw is a custom oscillator developed for the Korg NTS-1 Nu:Tekt digital synthesizer with the logue-sdk. This is an emulation of the Rolnd Super-Saw which featured on the JP-8080 and was developed with reference to the research carried out by Adam Szabo in 2010, and Alex Shore in 2013.
+UberSaw is a custom oscillator developed for the Korg NTS-1 Nu:Tekt digital synthesizer with the logue-sdk. This is an emulation of the Roland Super-Saw which featured on the JP-8080 and was developed with reference to the research carried out by Adam Szabo in 2010, and Alex Shore in 2013.
 
 Project Website:
 https://korgnts1beginnersguide.wordpress.com/
