@@ -23,10 +23,12 @@ You can download the [ubersaw.ntkdigunit](https://github.com/GrahamJamesKeane/Ub
 Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/) the project. To do so, clone the repo and run the Makefile via MSYS (Windows 10). I have provided [tutorials](https://korgnts1beginnersguide.wordpress.com/setting-up-the-development-environment/) on the set-up and use of the various tools you'll need to do this on the project website.
 
 ## Other Platforms
+This oscillator was designed for the Nu:Tekt NTS-1. I have provided unit files for the Minilogue and Prologue. However, I am unable to test them and I cannot guarantee they will work.
+
 ### Minilogue XD 
 If you intend to load this program to the Minilgoue XD please use the [ubersaw.mnlgxdunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_MXD/ubersaw.mnlgxdunit) located in the Minilogue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_MXD).
 
-Note: This is currently untested on the Minilogue-XD.
+Note: Some users report that the Minilogue freezes when a note is played.
 
 ### Prologue XD 
 If you intend to load this program to the Prologue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO).
