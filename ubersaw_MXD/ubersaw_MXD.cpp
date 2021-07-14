@@ -9,6 +9,9 @@
 #include "userosc.h"
 #include "ubersaw_MXD.hpp"
 
+// Amplitude correction for side oscillators
+# define AMP_CORRECTION 1.f / (NUM_OSC - 1)
+
 // Create UberSaw object
 static UberSaw ubersaw;
 
@@ -93,7 +96,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		*/ 
 		for(int i = 1; i < NUM_OSC; i++) {
 			float sig = secondary_mix * osc_bl2_sawf(phi[i], index);
-			main_sig += sig * 0.5f;
+			main_sig += sig * AMP_CORRECTION;
 		}
 		
 		/*
