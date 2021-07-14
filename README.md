@@ -14,3 +14,6 @@ https://korgnts1beginnersguide.wordpress.com/?p=499
 
 ![ubersaw_controls](https://user-images.githubusercontent.com/40239414/125534308-43eb3182-7a24-4f6b-8193-b27a17d7c3cb.png)
 
+# Installation Instructions 
+
+You can download the [ubersaw.ntkdigubit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw.ntkdigunit)
