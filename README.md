@@ -10,10 +10,16 @@ https://youtu.be/s0rdvLjd52w
 Build Article:
 https://korgnts1beginnersguide.wordpress.com/?p=499
 
-# Controls
+## Controls
 
 ![ubersaw_controls](https://user-images.githubusercontent.com/40239414/125534308-43eb3182-7a24-4f6b-8193-b27a17d7c3cb.png)
 
-# Installation Instructions 
+## Installation Instructions 
 
-You can download the [ubersaw.ntkdigubit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw.ntkdigunit)
+### Directly Loading the Unit File
+You can download the [ubersaw.ntkdigunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw.ntkdigunit) file and load it directly to your NTS-1 using the [librarian](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/2/) application or [logue-CLI](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/3/) utility.
+
+### Build the Project Yourself
+Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/) the project. To do so, clone the repo and run the Makefile via MSYS (Windows 10). I have provided [tutorials](https://korgnts1beginnersguide.wordpress.com/setting-up-the-development-environment/) on the set-up and use of the various tools you'll need to do this on the project website.
+
+
