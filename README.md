@@ -8,7 +8,7 @@ Build Video:
 https://youtu.be/s0rdvLjd52w
 
 Build Article:
-
+https://korgnts1beginnersguide.wordpress.com/?p=499
 
 # Controls
 
