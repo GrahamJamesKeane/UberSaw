@@ -29,6 +29,6 @@ If you intend to load this program to the Minilgoue XD please use the [ubersaw.m
 Note: This is currently untested on the Minilogue-XD.
 
 ### Prologue XD 
-If you intend to load this program to the Prolgoue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO).
+If you intend to load this program to the Prologue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO).
 
 Note: This is currently untested on the Prologue.
