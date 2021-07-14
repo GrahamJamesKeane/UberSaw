@@ -22,7 +22,13 @@ You can download the [ubersaw.ntkdigunit](https://github.com/GrahamJamesKeane/Ub
 ### Build the Project Yourself
 Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/) the project. To do so, clone the repo and run the Makefile via MSYS (Windows 10). I have provided [tutorials](https://korgnts1beginnersguide.wordpress.com/setting-up-the-development-environment/) on the set-up and use of the various tools you'll need to do this on the project website.
 
-## Minilogue XD 
+## Other Platforms
+### Minilogue XD 
 If you intend to load this program to the Minilgoue XD please use the [ubersaw.mnlgxdunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_MXD/ubersaw.mnlgxdunit) located in the Minilogue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_MXD)
 
-This is currently untested on the Minilogue
+This is currently untested on the Minilogue-XD
+
+### Prologue XD 
+If you intend to load this program to the Prolgoue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO)
+
+This is currently untested on the Prologue
