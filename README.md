@@ -28,7 +28,9 @@ This oscillator was designed for the Nu:Tekt NTS-1. I have provided unit files f
 ### Minilogue XD 
 If you intend to load this program to the Minilgoue XD please use the [ubersaw.mnlgxdunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_MXD/ubersaw.mnlgxdunit) located in the Minilogue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_MXD).
 
-Note: Some users report that the Minilogue freezes when a note is played.
+~~Note: Some users report that the Minilogue freezes when a note is played.~~
+
+Update: Minilogue test version is working, I have updated the main files. I need to confirm it is working as expected. The detune control doens't appear to be having the desired effect.
 
 ### Prologue XD 
 If you intend to load this program to the Prologue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO).
