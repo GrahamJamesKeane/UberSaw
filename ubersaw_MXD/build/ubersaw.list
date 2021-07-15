@@ -135,25 +135,25 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000aa:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
-	// Create local copies of the state and params objects.
-	UberSaw::State &s = ubersaw.state;
-	const UberSaw::Params &p = ubersaw.params;
 	
 	// Get the current note being played.
+	
+	// =========================================================
+	
 	uint8_t note = params->pitch>>8;
 200000ae:	8886      	ldrh	r6, [r0, #4]
-	// Get its wave index.
-	const float index = osc_bl_saw_idx(note);
-	
-	{ 
+		
 		// Get current flag.
+		
+		// =========================================================
+		
 		const uint32_t flags = s.flags; 
-200000b0:	4caa      	ldr	r4, [pc, #680]	; (2000035c <_hook_cycle+0x2b2>)
-	// Create local copies of the state and params objects.
-	UberSaw::State &s = ubersaw.state;
-	const UberSaw::Params &p = ubersaw.params;
+200000b0:	4cac      	ldr	r4, [pc, #688]	; (20000364 <_hook_cycle+0x2ba>)
 	
 	// Get the current note being played.
+	
+	// =========================================================
+	
 	uint8_t note = params->pitch>>8;
 200000b2:	1236      	asrs	r6, r6, #8
 void OSC_INIT(uint32_t platform, uint32_t api) {
@@ -163,11 +163,11 @@ void OSC_INIT(uint32_t platform, uint32_t api) {
 
 void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t frames){
 200000b4:	ed2d 8b10 	vpush	{d8-d15}
-	// Create local copies of the state and params objects.
-	UberSaw::State &s = ubersaw.state;
-	const UberSaw::Params &p = ubersaw.params;
 	
 	// Get the current note being played.
+	
+	// =========================================================
+	
 	uint8_t note = params->pitch>>8;
 200000b8:	b2f5      	uxtb	r5, r6
    * @return     Corresponding band-limited wave fractional index in [0-6].
@@ -189,37 +189,51 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 200000c6:	4681      	mov	r9, r0
 200000c8:	460f      	mov	r7, r1
 200000ca:	f000 fcd9 	bl	20000a80 <___osc_bl_saw_idx_veneer>
-	// Get its wave index.
-	const float index = osc_bl_saw_idx(note);
-	
-	{ 
+		
 		// Get current flag.
+		
+		// =========================================================
+		
 		const uint32_t flags = s.flags; 
 200000ce:	f894 3050 	ldrb.w	r3, [r4, #80]	; 0x50
+		
 		// Reset s.flags.
+		
+		// =========================================================
+		
 		s.flags = UberSaw::flags_none;
 200000d2:	461a      	mov	r2, r3
 200000d4:	f36f 0201 	bfc	r2, #0, #2
+		
 		// Check if action required.
+		
+		// =========================================================
+		
 		if(flags & UberSaw::flag_detune) {
 200000d8:	079b      	lsls	r3, r3, #30
 200000da:	eeb0 8a40 	vmov.f32	s16, s0
-	
-	{ 
-		// Get current flag.
-		const uint32_t flags = s.flags; 
+		
 		// Reset s.flags.
+		
+		// =========================================================
+		
 		s.flags = UberSaw::flags_none;
 200000de:	f884 2050 	strb.w	r2, [r4, #80]	; 0x50
+		
 		// Check if action required.
+		
+		// =========================================================
+		
 		if(flags & UberSaw::flag_detune) {
 200000e2:	d502      	bpl.n	200000ea <_hook_cycle+0x40>
 			ubersaw.updateDetune();
 200000e4:	4620      	mov	r0, r4
 200000e6:	f000 fc01 	bl	200008ec <_ZN7UberSaw12updateDetuneEv>
-		}
 		
 		// Update the pitches.
+		
+		// =========================================================
+		
 		ubersaw.updatePitch(osc_w0f_for_note(note, params->pitch & 0xFF));
 200000ea:	f899 3004 	ldrb.w	r3, [r9, #4]
    *
@@ -228,21 +242,21 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
    */
   __fast_inline float osc_notehzf(uint8_t note) {
     return midi_to_hz_lut_f[clipmaxu32(note,k_midi_to_hz_size-1)];
-200000ee:	4a9c      	ldr	r2, [pc, #624]	; (20000360 <_hook_cycle+0x2b6>)
+200000ee:	4a9e      	ldr	r2, [pc, #632]	; (20000368 <_hook_cycle+0x2be>)
 
 /** Linear interpolation
  */
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-200000f0:	eddf 6a9c 	vldr	s13, [pc, #624]	; 20000364 <_hook_cycle+0x2ba>
+200000f0:	eddf 6a9e 	vldr	s13, [pc, #632]	; 2000036c <_hook_cycle+0x2c2>
 			float detune_down = 1.f - detune_amount;
 		
 			float detune_up = 1.f + detune_amount;
 			
 			// Detune side oscs and add phase drift
 			state.w0[i] = (w0 * detune_down) + (drift * SIDE_DRIFT);
-200000f4:	ed9f 6a9c 	vldr	s12, [pc, #624]	; 20000368 <_hook_cycle+0x2be>
+200000f4:	ed9f 6a9e 	vldr	s12, [pc, #632]	; 20000370 <_hook_cycle+0x2c6>
 	inline void updatePitch(float w0) {
 		// Get phase drift from A knob
 		const float drift = params.shiftshape;
@@ -287,7 +301,7 @@ float linintf(const float fr, const float x0, const float x1) {
 20000114:	eb02 0686 	add.w	r6, r2, r6, lsl #2
 20000118:	eb02 0383 	add.w	r3, r2, r3, lsl #2
 2000011c:	ed96 7a00 	vldr	s14, [r6]
-20000120:	4e8e      	ldr	r6, [pc, #568]	; (2000035c <_hook_cycle+0x2b2>)
+20000120:	4e90      	ldr	r6, [pc, #576]	; (20000364 <_hook_cycle+0x2ba>)
 20000122:	ee67 7aa6 	vmul.f32	s15, s15, s13
 20000126:	edd3 6a00 	vldr	s13, [r3]
 2000012a:	ee76 6ac7 	vsub.f32	s13, s13, s14
@@ -314,7 +328,7 @@ float linintf(const float fr, const float x0, const float x1) {
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-20000140:	ed9f 7a8a 	vldr	s14, [pc, #552]	; 2000036c <_hook_cycle+0x2c2>
+20000140:	ed9f 7a8c 	vldr	s14, [pc, #560]	; 20000374 <_hook_cycle+0x2ca>
 20000144:	eef4 7ac7 	vcmpe.f32	s15, s14
 20000148:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
 2000014c:	bfb8      	it	lt
@@ -325,7 +339,7 @@ float fsel(const float a, const float b, const float c) {
     const float f = clipmaxf(linintf(mod * k_note_mod_fscale, f0, f1), k_note_max_hz);
 
     return f * k_samplerate_recipf;
-20000152:	eddf 7a87 	vldr	s15, [pc, #540]	; 20000370 <_hook_cycle+0x2c6>
+20000152:	eddf 7a89 	vldr	s15, [pc, #548]	; 20000378 <_hook_cycle+0x2ce>
 20000156:	ee67 7a27 	vmul.f32	s15, s14, s15
 		params = Params();
 	}
@@ -420,8 +434,8 @@ float fsel(const float a, const float b, const float c) {
 		
 		// Make superwave an octave higher and add a phase drift
 		state.w0super = (2.f * w0) + (drift * SUB_DRIFT);
-200001ac:	ed9f 5a71 	vldr	s10, [pc, #452]	; 20000374 <_hook_cycle+0x2ca>
-200001b0:	f8df e1e8 	ldr.w	lr, [pc, #488]	; 2000039c <_hook_cycle+0x2f2>
+200001ac:	ed9f 5a73 	vldr	s10, [pc, #460]	; 2000037c <_hook_cycle+0x2d2>
+200001b0:	f8df e1f0 	ldr.w	lr, [pc, #496]	; 200003a4 <_hook_cycle+0x2fa>
 200001b4:	ee27 5a05 	vmul.f32	s10, s14, s10
 	
 		// Make subwave an octave lower and add a phase drift
@@ -439,6 +453,9 @@ float fsel(const float a, const float b, const float c) {
 200001c8:	a903      	add	r1, sp, #12
 		
 		// Get the current LFO value.
+		
+		// =========================================================
+		
 		s.lfo = q31_to_f32(params->shape_lfo);
 200001ca:	460a      	mov	r2, r1
 	
@@ -460,27 +477,27 @@ float fsel(const float a, const float b, const float c) {
 		state.w0sub = (0.5f * w0) + (drift * SUB_DRIFT);
 200001e0:	ed84 5a11 	vstr	s10, [r4, #68]	; 0x44
 200001e4:	edc4 7a12 	vstr	s15, [r4, #72]	; 0x48
-	}
 	
-	// Create local copies of the state object fields.
+	// =========================================================
+	
 	float phi[NUM_OSC];
 	for(int i = 0; i < NUM_OSC; i++) {
 		phi[i] = s.phi[i];
 200001e8:	f853 0b04 	ldr.w	r0, [r3], #4
 200001ec:	f842 0b04 	str.w	r0, [r2], #4
-		
-	}
-	
 	// Create local copies of the state object fields.
+	
+	// =========================================================
+	
 	float phi[NUM_OSC];
 	for(int i = 0; i < NUM_OSC; i++) {
 200001f0:	459e      	cmp	lr, r3
 200001f2:	d1f9      	bne.n	200001e8 <_hook_cycle+0x13e>
-	}
-	float phisub = s.phisub;
-	float phisuper = s.phisuper;
 
 	// Update Final LFO state
+	
+	// =========================================================
+	
 	float lfoz = s.lfoz;
 200001f4:	ed94 4a13 	vldr	s8, [r4, #76]	; 0x4c
     if (x0p >= k_wt_saw_size) {
@@ -489,15 +506,15 @@ float fsel(const float a, const float b, const float c) {
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
-200001f8:	485f      	ldr	r0, [pc, #380]	; (20000378 <_hook_cycle+0x2ce>)
+200001f8:	4861      	ldr	r0, [pc, #388]	; (20000380 <_hook_cycle+0x2d6>)
    * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-200001fa:	eddf 0a60 	vldr	s1, [pc, #384]	; 2000037c <_hook_cycle+0x2d2>
-	// Create local copies of the state object fields.
+200001fa:	eddf 0a62 	vldr	s1, [pc, #392]	; 20000384 <_hook_cycle+0x2da>
+	
 	float phi[NUM_OSC];
 	for(int i = 0; i < NUM_OSC; i++) {
 		phi[i] = s.phi[i];
@@ -507,61 +524,64 @@ float fsel(const float a, const float b, const float c) {
 	float phisuper = s.phisuper;
 20000202:	ed94 6a07 	vldr	s12, [r4, #28]
 	
-	// Get LFO increment per frame
-	const float lfo_inc = (s.lfo - lfoz) / frames;
-	
 	// Create local copies of parameter object fields.
+	
+	// =========================================================
+	
 	const float submix = p.submix;
 20000206:	edd4 1a15 	vldr	s3, [r4, #84]	; 0x54
 	const float supermix = p.supermix;
 2000020a:	ed94 1a16 	vldr	s2, [r4, #88]	; 0x58
 	const float ringmix = p.ringmix;
 2000020e:	ed94 3a17 	vldr	s6, [r4, #92]	; 0x5c
-	const q31_t *y_e = y + frames; // y_e is buffer end position.
-	
-	// Load the buffer.
-	for (; y != y_e; ) {
+		
 		// Get mix control value, range [0-1].
+		
+		// =========================================================
+		
 		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
 20000212:	edd4 8a1a 	vldr	s17, [r4, #104]	; 0x68
-20000216:	ed9f 9a5a 	vldr	s18, [pc, #360]	; 20000380 <_hook_cycle+0x2d6>
+20000216:	ed9f 9a5c 	vldr	s18, [pc, #368]	; 20000388 <_hook_cycle+0x2de>
 		
 		// Calculate primary and secondary mix values (Adam Szabo's method).
-		float primary_mix = (-0.55366 * wavemix) + 0.99785;
-2000021a:	eddf 9a5a 	vldr	s19, [pc, #360]	; 20000384 <_hook_cycle+0x2da>
-2000021e:	ed9f aa5a 	vldr	s20, [pc, #360]	; 20000388 <_hook_cycle+0x2de>
-		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
-20000222:	eddf aa5a 	vldr	s21, [pc, #360]	; 2000038c <_hook_cycle+0x2e2>
-20000226:	ed9f ba5a 	vldr	s22, [pc, #360]	; 20000390 <_hook_cycle+0x2e6>
-2000022a:	eddf ba5a 	vldr	s23, [pc, #360]	; 20000394 <_hook_cycle+0x2ea>
-		// Softclip signal before sending to buffer
-		main_sig = osc_softclipf(0.125f, main_sig);
 		
-		// Add frame to buffer
-		// Must be formatted in Q31 binary fixed point representation
-		*(y++) = f32_to_q31(main_sig);
-2000022e:	ed9f ca5a 	vldr	s24, [pc, #360]	; 20000398 <_hook_cycle+0x2ee>
-
-	// Update Final LFO state
-	float lfoz = s.lfoz;
+		// =========================================================
+		
+		float primary_mix = (-0.55366 * wavemix) + 0.99785;
+2000021a:	eddf 9a5c 	vldr	s19, [pc, #368]	; 2000038c <_hook_cycle+0x2e2>
+2000021e:	ed9f aa5c 	vldr	s20, [pc, #368]	; 20000390 <_hook_cycle+0x2e6>
+		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
+20000222:	eddf aa5c 	vldr	s21, [pc, #368]	; 20000394 <_hook_cycle+0x2ea>
+20000226:	ed9f ba5c 	vldr	s22, [pc, #368]	; 20000398 <_hook_cycle+0x2ee>
+2000022a:	eddf ba5c 	vldr	s23, [pc, #368]	; 2000039c <_hook_cycle+0x2f2>
+		float sig = 0.f;
+		for(int i = 1; i < NUM_OSC; i++) {
+			sig += secondary_mix * osc_bl2_sawf(phi[i], index);
+		}
+		sig *= AMP_CORRECTION;
+		main_sig += sig;
+2000022e:	ed9f ca5c 	vldr	s24, [pc, #368]	; 200003a0 <_hook_cycle+0x2f6>
+	// =========================================================
 	
 	// Get LFO increment per frame
+	
+	// =========================================================
 	const float lfo_inc = (s.lfo - lfoz) / frames;
 20000232:	ee07 8a10 	vmov	s14, r8
 20000236:	ee77 7ac4 	vsub.f32	s15, s15, s8
 2000023a:	eeb8 7a47 	vcvt.f32.u32	s14, s14
-	const float supermix = p.supermix;
-	const float ringmix = p.ringmix;
 	
 	// Prepare to load buffer.
+	
+	// =========================================================
 	q31_t *__restrict y = (q31_t*)yn; // y is buffer start position.
 	const q31_t *y_e = y + frames; // y_e is buffer end position.
 2000023e:	eb07 0288 	add.w	r2, r7, r8, lsl #2
-
-	// Update Final LFO state
-	float lfoz = s.lfoz;
+	// =========================================================
 	
 	// Get LFO increment per frame
+	
+	// =========================================================
 	const float lfo_inc = (s.lfo - lfoz) / frames;
 20000242:	ee87 0a87 	vdiv.f32	s0, s15, s14
     if (x0p >= k_wt_saw_size) {
@@ -581,51 +601,55 @@ float fsel(const float a, const float b, const float c) {
 
     wt += k_wt_saw_lut_size;
 2000025e:	f503 7501 	add.w	r5, r3, #516	; 0x204
-	// Prepare to load buffer.
-	q31_t *__restrict y = (q31_t*)yn; // y is buffer start position.
-	const q31_t *y_e = y + frames; // y_e is buffer end position.
+	// =========================================================
 	
 	// Load the buffer.
+	
+	// =========================================================
 	for (; y != y_e; ) {
 20000262:	4297      	cmp	r7, r2
 20000264:	f000 81de 	beq.w	20000624 <_hook_cycle+0x57a>
+		
 		// Get mix control value, range [0-1].
+		
+		// =========================================================
+		
 		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
-20000268:	ee74 7a28 	vadd.f32	s15, s8, s17
-2000026c:	eef7 6a00 	vmov.f32	s13, #112	; 0x3f800000  1.0
-20000270:	eef5 7ac0 	vcmpe.f32	s15, #0.0
+20000268:	ee34 7a28 	vadd.f32	s14, s8, s17
+2000026c:	eef7 7a00 	vmov.f32	s15, #112	; 0x3f800000  1.0
+20000270:	eeb5 7ac0 	vcmpe.f32	s14, #0.0
 20000274:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
 20000278:	bfb8      	it	lt
-2000027a:	eef0 7a49 	vmovlt.f32	s15, s18
-2000027e:	ee37 7ae4 	vsub.f32	s14, s15, s9
-		
-		/*
-		* Get band-limited primary sawtooth wave sample for given
-		* phase and wave index, then apply primary mix.
+2000027a:	eeb0 7a49 	vmovlt.f32	s14, s18
+2000027e:	ee77 6a64 	vsub.f32	s13, s14, s9
+		*
 		*/ 
+		
+		// =========================================================
+		
 		float main_sig = primary_mix * osc_bl2_sawf(phi[0], index);
-20000282:	eddd ca03 	vldr	s25, [sp, #12]
-20000286:	eeb5 7a40 	vcmp.f32	s14, #0.0
+20000282:	eddd da03 	vldr	s27, [sp, #12]
+20000286:	eef5 6a40 	vcmp.f32	s13, #0.0
 2000028a:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
 2000028e:	bfa8      	it	ge
-20000290:	eef0 7a66 	vmovge.f32	s15, s13
-		// Get mix control value, range [0-1].
-		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
-		
+20000290:	eeb0 7a67 	vmovge.f32	s14, s15
 		// Calculate primary and secondary mix values (Adam Szabo's method).
+		
+		// =========================================================
+		
 		float primary_mix = (-0.55366 * wavemix) + 0.99785;
 		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
-20000294:	ee27 7aaa 	vmul.f32	s14, s15, s21
-20000298:	ee27 da8b 	vmul.f32	s26, s15, s22
-	for (; y != y_e; ) {
-		// Get mix control value, range [0-1].
-		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
+20000294:	ee27 da2a 	vmul.f32	s26, s14, s21
+20000298:	ee67 6a0b 	vmul.f32	s13, s14, s22
 		
 		// Calculate primary and secondary mix values (Adam Szabo's method).
+		
+		// =========================================================
+		
 		float primary_mix = (-0.55366 * wavemix) + 0.99785;
-2000029c:	eef0 da4a 	vmov.f32	s27, s20
+2000029c:	eef0 ca4a 	vmov.f32	s25, s20
 		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
-200002a0:	eea7 da27 	vfma.f32	s26, s14, s15
+200002a0:	eeed 6a07 	vfma.f32	s13, s26, s14
 200002a4:	f10d 0910 	add.w	r9, sp, #16
    * @return        Wave sample.
    */
@@ -633,574 +657,648 @@ float fsel(const float a, const float b, const float c) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-200002a8:	eebc 7aec 	vcvt.u32.f32	s14, s25
-	for (; y != y_e; ) {
-		// Get mix control value, range [0-1].
-		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
+200002a8:	eebc daed 	vcvt.u32.f32	s26, s27
 		
 		// Calculate primary and secondary mix values (Adam Szabo's method).
+		
+		// =========================================================
+		
 		float primary_mix = (-0.55366 * wavemix) + 0.99785;
-200002ac:	eee7 daa9 	vfma.f32	s27, s15, s19
-200002b0:	eeb8 7a47 	vcvt.f32.u32	s14, s14
-		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
-200002b4:	ee3d da2b 	vadd.f32	s26, s26, s23
-200002b8:	ee3c 7ac7 	vsub.f32	s14, s25, s14
+200002ac:	eee7 ca29 	vfma.f32	s25, s14, s19
+200002b0:	eeb8 da4d 	vcvt.f32.u32	s26, s26
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
     
     return linintf((idx - (uint8_t)idx), y0, y1);
-200002bc:	eefc cac8 	vcvt.u32.f32	s25, s16
+200002b4:	eebc eac8 	vcvt.u32.f32	s28, s16
    * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-200002c0:	ee27 7a20 	vmul.f32	s14, s14, s1
+200002b8:	ee3d dacd 	vsub.f32	s26, s27, s26
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
     
     return linintf((idx - (uint8_t)idx), y0, y1);
-200002c4:	edcd ca01 	vstr	s25, [sp, #4]
+200002bc:	ed8d ea01 	vstr	s28, [sp, #4]
+   * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
+200002c0:	ee2d da20 	vmul.f32	s26, s26, s1
+		float secondary_mix = (-0.73764 * wavemix * wavemix) + (1.2841 * wavemix) + 0.44372;
+200002c4:	ee76 6aab 	vadd.f32	s13, s13, s23
     const uint32_t x0p = (uint32_t)x0f;
-200002c8:	eefc 7ac7 	vcvt.u32.f32	s15, s14
-200002cc:	ee17 8a90 	vmov	r8, s15
+200002c8:	eebc 7acd 	vcvt.u32.f32	s14, s26
+200002cc:	ee17 8a10 	vmov	r8, s14
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
 200002d0:	f1b8 0f7f 	cmp.w	r8, #127	; 0x7f
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
-200002d4:	bf87      	ittee	hi
+200002d4:	bf8b      	itete	hi
 200002d6:	f008 007f 	andhi.w	r0, r8, #127	; 0x7f
-200002da:	f1c0 0c80 	rsbhi	ip, r0, #128	; 0x80
+    
+    const float x0f = 2.f * p * k_wt_saw_size;
+    const uint32_t x0p = (uint32_t)x0f;
+    
+    uint32_t x0 = x0p, x1 = x0p+1;
+    float sign = 1.f;
+200002da:	eeb0 7a67 	vmovls.f32	s14, s15
+    if (x0p >= k_wt_saw_size) {
+      x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
+200002de:	f1c0 0c80 	rsbhi	ip, r0, #128	; 0x80
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
-200002de:	46c4      	movls	ip, r8
-200002e0:	f108 0001 	addls.w	r0, r8, #1
+200002e2:	46c4      	movls	ip, r8
+      x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
+      x1 = x0 - 1;
+      sign = -1.f;
+    }
+    const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
+    const float fr = x0f - x0p;
+200002e4:	ee07 8a90 	vmov	s15, r8
+    const float p = x - (uint32_t)x;
+    
+    const float x0f = 2.f * p * k_wt_saw_size;
+    const uint32_t x0p = (uint32_t)x0f;
+    
+    uint32_t x0 = x0p, x1 = x0p+1;
+200002e8:	bf98      	it	ls
+200002ea:	f108 0001 	addls.w	r0, r8, #1
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-200002e4:	ea4f 0c8c 	mov.w	ip, ip, lsl #2
+200002ee:	ea4f 0c8c 	mov.w	ip, ip, lsl #2
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
-200002e8:	bf88      	it	hi
-200002ea:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
+200002f2:	bf88      	it	hi
+200002f4:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-200002ee:	eb03 080c 	add.w	r8, r3, ip
-200002f2:	ea4f 0080 	mov.w	r0, r0, lsl #2
+200002f8:	eb03 080c 	add.w	r8, r3, ip
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-200002f6:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200002fc:	eef8 7a67 	vcvt.f32.u32	s15, s15
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-200002fa:	ed98 ea00 	vldr	s28, [r8]
-200002fe:	eb03 0800 	add.w	r8, r3, r0
+20000300:	ea4f 0080 	mov.w	r0, r0, lsl #2
+20000304:	edd8 da00 	vldr	s27, [r8]
+20000308:	eb03 0800 	add.w	r8, r3, r0
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-20000302:	ee77 7a67 	vsub.f32	s15, s14, s15
+2000030c:	ee3d da67 	vsub.f32	s26, s26, s15
 
 /** Linear interpolation
  */
 static inline __attribute__((optimize("Ofast"), always_inline))
 float linintf(const float fr, const float x0, const float x1) {
   return x0 + fr * (x1 - x0);
-20000306:	ed98 7a00 	vldr	s14, [r8]
-2000030a:	ee37 7a4e 	vsub.f32	s14, s14, s28
+20000310:	edd8 7a00 	vldr	s15, [r8]
+20000314:	ee77 7aed 	vsub.f32	s15, s15, s27
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
-2000030e:	44ac      	add	ip, r5
-20000310:	4428      	add	r0, r5
-20000312:	eea7 ea87 	vfma.f32	s28, s15, s14
-		
-		/*
-		* Get band-limited primary sawtooth wave sample for given
-		* phase and wave index, then apply primary mix.
+20000318:	44ac      	add	ip, r5
+2000031a:	4428      	add	r0, r5
+2000031c:	eeed da27 	vfma.f32	s27, s26, s15
+		*
 		*/ 
+		
+		// =========================================================
+		
 		float main_sig = primary_mix * osc_bl2_sawf(phi[0], index);
-20000316:	edd0 ea00 	vldr	s29, [r0]
-2000031a:	ed9c 7a00 	vldr	s14, [ip]
+20000320:	ed90 ea00 	vldr	s28, [r0]
+20000324:	eddc 7a00 	vldr	s15, [ip]
     
     return linintf((idx - (uint8_t)idx), y0, y1);
-2000031e:	f89d c004 	ldrb.w	ip, [sp, #4]
-20000322:	ee7e eac7 	vsub.f32	s29, s29, s14
+20000328:	f89d c004 	ldrb.w	ip, [sp, #4]
+2000032c:	ee3e ea67 	vsub.f32	s28, s28, s15
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
-20000326:	bf88      	it	hi
-20000328:	eeff 6a00 	vmovhi.f32	s13, #240	; 0xbf800000 -1.0
-2000032c:	eea7 7aae 	vfma.f32	s14, s15, s29
+20000330:	bf88      	it	hi
+20000332:	eebf 7a00 	vmovhi.f32	s14, #240	; 0xbf800000 -1.0
+20000336:	eeed 7a0e 	vfma.f32	s15, s26, s28
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
     
     return linintf((idx - (uint8_t)idx), y0, y1);
-20000330:	ee0c ca90 	vmov	s25, ip
-20000334:	ee27 7a26 	vmul.f32	s14, s14, s13
-20000338:	eef8 caec 	vcvt.f32.s32	s25, s25
-2000033c:	eeae 7a66 	vfms.f32	s14, s28, s13
-20000340:	f10d 0c28 	add.w	ip, sp, #40	; 0x28
-20000344:	ee78 ca6c 	vsub.f32	s25, s16, s25
-		* Need to correct amplitude to prevent clipping, 0.2f is close 
-		* enough for each osc.
-		*/ 
-		for(int i = 1; i < NUM_OSC; i++) {
-			float sig = secondary_mix * osc_bl2_sawf(phi[i], index);
-			main_sig += sig * AMP_CORRECTION;
-20000348:	eef1 7a08 	vmov.f32	s15, #24	; 0x40c00000  6.0
-		
+2000033a:	ee0e ca90 	vmov	s29, ip
+2000033e:	ee67 7a87 	vmul.f32	s15, s15, s14
+20000342:	eef8 eaee 	vcvt.f32.s32	s29, s29
+20000346:	eeed 7ac7 	vfms.f32	s15, s27, s14
+2000034a:	f10d 0c28 	add.w	ip, sp, #40	; 0x28
+2000034e:	ee78 ea6e 	vsub.f32	s29, s16, s29
 		/*
-		* Get band-limited primary sawtooth wave sample for given
-		* phase and wave index, then apply primary mix.
+		* Test 1: Define separate signal for side osc, sum values
+		* and then apply amp correction before adding to main signal
 		*/ 
+		
+		float sig = 0.f;
+20000352:	ed9f da0d 	vldr	s26, [pc, #52]	; 20000388 <_hook_cycle+0x2de>
+		*
+		*/ 
+		
+		// =========================================================
+		
 		float main_sig = primary_mix * osc_bl2_sawf(phi[0], index);
-2000034c:	ee27 7a2c 	vmul.f32	s14, s14, s25
-20000350:	eeae 7a26 	vfma.f32	s14, s28, s13
-20000354:	ee27 7a2d 	vmul.f32	s14, s14, s27
-20000358:	e022      	b.n	200003a0 <_hook_cycle+0x2f6>
-2000035a:	bf00      	nop
-2000035c:	20000a88 	.word	0x20000a88
-20000360:	0800f100 	.word	0x0800f100
-20000364:	3b808081 	.word	0x3b808081
-20000368:	36aec33e 	.word	0x36aec33e
-2000036c:	46b8ff49 	.word	0x46b8ff49
-20000370:	37aec33e 	.word	0x37aec33e
-20000374:	3651b717 	.word	0x3651b717
-20000378:	08011db8 	.word	0x08011db8
-2000037c:	43800000 	.word	0x43800000
-20000380:	00000000 	.word	0x00000000
-20000384:	bf0dbca9 	.word	0xbf0dbca9
-20000388:	3f7f7319 	.word	0x3f7f7319
-2000038c:	bf3cd5fa 	.word	0xbf3cd5fa
-20000390:	3fa45d64 	.word	0x3fa45d64
-20000394:	3ee32f45 	.word	0x3ee32f45
-20000398:	4f000000 	.word	0x4f000000
-2000039c:	20000aa4 	.word	0x20000aa4
-		* phases and wave indices, then apply secondary mix.
-		* Need to correct amplitude to prevent clipping, 0.2f is close 
-		* enough for each osc.
+20000356:	ee67 7aae 	vmul.f32	s15, s15, s29
+2000035a:	eeed 7a87 	vfma.f32	s15, s27, s14
+2000035e:	ee67 7aac 	vmul.f32	s15, s15, s25
+20000362:	e021      	b.n	200003a8 <_hook_cycle+0x2fe>
+20000364:	20000a88 	.word	0x20000a88
+20000368:	0800f100 	.word	0x0800f100
+2000036c:	3b808081 	.word	0x3b808081
+20000370:	36aec33e 	.word	0x36aec33e
+20000374:	46b8ff49 	.word	0x46b8ff49
+20000378:	37aec33e 	.word	0x37aec33e
+2000037c:	3651b717 	.word	0x3651b717
+20000380:	08011db8 	.word	0x08011db8
+20000384:	43800000 	.word	0x43800000
+20000388:	00000000 	.word	0x00000000
+2000038c:	bf0dbca9 	.word	0xbf0dbca9
+20000390:	3f7f7319 	.word	0x3f7f7319
+20000394:	bf3cd5fa 	.word	0xbf3cd5fa
+20000398:	3fa45d64 	.word	0x3fa45d64
+2000039c:	3ee32f45 	.word	0x3ee32f45
+200003a0:	3e2aaaab 	.word	0x3e2aaaab
+200003a4:	20000aa4 	.word	0x20000aa4
+		* and then apply amp correction before adding to main signal
 		*/ 
+		
+		float sig = 0.f;
 		for(int i = 1; i < NUM_OSC; i++) {
-			float sig = secondary_mix * osc_bl2_sawf(phi[i], index);
-200003a0:	ecb9 ea01 	vldmia	r9!, {s28}
+			sig += secondary_mix * osc_bl2_sawf(phi[i], index);
+200003a8:	ecf9 da01 	vldmia	r9!, {s27}
    * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-200003a4:	eefc dace 	vcvt.u32.f32	s27, s28
-200003a8:	eef8 da6d 	vcvt.f32.u32	s27, s27
-200003ac:	ee7e da6d 	vsub.f32	s27, s28, s27
-200003b0:	ee6d daa2 	vmul.f32	s27, s27, s5
+200003ac:	eefc caed 	vcvt.u32.f32	s25, s27
+200003b0:	eef8 ca6c 	vcvt.f32.u32	s25, s25
+200003b4:	ee7d caec 	vsub.f32	s25, s27, s25
+200003b8:	ee6c caa2 	vmul.f32	s25, s25, s5
     const uint32_t x0p = (uint32_t)x0f;
-200003b4:	eefc 6aed 	vcvt.u32.f32	s13, s27
-200003b8:	ee16 aa90 	vmov	sl, s13
+200003bc:	eebc 7aec 	vcvt.u32.f32	s14, s25
+200003c0:	ee17 aa10 	vmov	sl, s14
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
-200003bc:	f1ba 0f7f 	cmp.w	sl, #127	; 0x7f
+200003c4:	f1ba 0f7f 	cmp.w	sl, #127	; 0x7f
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
-200003c0:	bf87      	ittee	hi
-200003c2:	f00a 007f 	andhi.w	r0, sl, #127	; 0x7f
-200003c6:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
+200003c8:	bf87      	ittee	hi
+200003ca:	f00a 007f 	andhi.w	r0, sl, #127	; 0x7f
+200003ce:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
-200003ca:	46d0      	movls	r8, sl
-200003cc:	f10a 0001 	addls.w	r0, sl, #1
+200003d2:	46d0      	movls	r8, sl
+200003d4:	f10a 0001 	addls.w	r0, sl, #1
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
-200003d0:	bf88      	it	hi
-200003d2:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
+200003d8:	bf88      	it	hi
+200003da:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-200003d6:	eef8 6a66 	vcvt.f32.u32	s13, s13
+200003de:	eeb8 7a47 	vcvt.f32.u32	s14, s14
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-200003da:	ea4f 0888 	mov.w	r8, r8, lsl #2
-200003de:	eb03 0a08 	add.w	sl, r3, r8
-200003e2:	ea4f 0080 	mov.w	r0, r0, lsl #2
+200003e2:	ea4f 0888 	mov.w	r8, r8, lsl #2
+200003e6:	eb03 0a08 	add.w	sl, r3, r8
+200003ea:	ea4f 0080 	mov.w	r0, r0, lsl #2
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-200003e6:	ee7d eae6 	vsub.f32	s29, s27, s13
+200003ee:	ee3c eac7 	vsub.f32	s28, s25, s14
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-200003ea:	edda da00 	vldr	s27, [sl]
-200003ee:	eb03 0a00 	add.w	sl, r3, r0
-200003f2:	edda 6a00 	vldr	s13, [sl]
-200003f6:	ee76 6aed 	vsub.f32	s13, s13, s27
+200003f2:	edda ca00 	vldr	s25, [sl]
+200003f6:	eb03 0a00 	add.w	sl, r3, r0
+200003fa:	ed9a 7a00 	vldr	s14, [sl]
+200003fe:	ee37 7a6c 	vsub.f32	s14, s14, s25
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
-200003fa:	44a8      	add	r8, r5
-200003fc:	4428      	add	r0, r5
-200003fe:	eeee daa6 	vfma.f32	s27, s29, s13
-			main_sig += sig * AMP_CORRECTION;
-20000402:	ed90 fa00 	vldr	s30, [r0]
-20000406:	edd8 6a00 	vldr	s13, [r8]
-2000040a:	ee3f fa66 	vsub.f32	s30, s30, s13
+20000402:	44a8      	add	r8, r5
+20000404:	4428      	add	r0, r5
+20000406:	eeee ca07 	vfma.f32	s25, s28, s14
+2000040a:	ed90 fa00 	vldr	s30, [r0]
+2000040e:	ed98 7a00 	vldr	s14, [r8]
+20000412:	ee3f fa47 	vsub.f32	s30, s30, s14
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
-2000040e:	bf98      	it	ls
-20000410:	eeb7 ea00 	vmovls.f32	s28, #112	; 0x3f800000  1.0
-20000414:	eeee 6a8f 	vfma.f32	s13, s29, s30
+20000416:	bf98      	it	ls
+20000418:	eef7 da00 	vmovls.f32	s27, #112	; 0x3f800000  1.0
+2000041c:	eeae 7a0f 	vfma.f32	s14, s28, s30
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
-20000418:	bf88      	it	hi
-2000041a:	eebf ea00 	vmovhi.f32	s28, #240	; 0xbf800000 -1.0
-2000041e:	ee66 6a8e 	vmul.f32	s13, s13, s28
-		* Get band-limited secondary sawtooth wave samples for given
-		* phases and wave indices, then apply secondary mix.
-		* Need to correct amplitude to prevent clipping, 0.2f is close 
-		* enough for each osc.
+20000420:	bf88      	it	hi
+20000422:	eeff da00 	vmovhi.f32	s27, #240	; 0xbf800000 -1.0
+20000426:	ee27 7a2d 	vmul.f32	s14, s14, s27
+		* Test 1: Define separate signal for side osc, sum values
+		* and then apply amp correction before adding to main signal
 		*/ 
+		
+		float sig = 0.f;
 		for(int i = 1; i < NUM_OSC; i++) {
-20000422:	45cc      	cmp	ip, r9
-			float sig = secondary_mix * osc_bl2_sawf(phi[i], index);
-			main_sig += sig * AMP_CORRECTION;
-20000424:	eeed 6ace 	vfms.f32	s13, s27, s28
-20000428:	ee66 6aac 	vmul.f32	s13, s13, s25
-2000042c:	eeed 6a8e 	vfma.f32	s13, s27, s28
-20000430:	ee66 6a8d 	vmul.f32	s13, s13, s26
-20000434:	eec6 daa7 	vdiv.f32	s27, s13, s15
-20000438:	ee37 7a2d 	vadd.f32	s14, s14, s27
-		* Get band-limited secondary sawtooth wave samples for given
-		* phases and wave indices, then apply secondary mix.
-		* Need to correct amplitude to prevent clipping, 0.2f is close 
-		* enough for each osc.
+2000042a:	45cc      	cmp	ip, r9
+			sig += secondary_mix * osc_bl2_sawf(phi[i], index);
+2000042c:	eeac 7aed 	vfms.f32	s14, s25, s27
+20000430:	ee27 7a2e 	vmul.f32	s14, s14, s29
+20000434:	eeac 7aad 	vfma.f32	s14, s25, s27
+20000438:	eea6 da87 	vfma.f32	s26, s13, s14
+		* Test 1: Define separate signal for side osc, sum values
+		* and then apply amp correction before adding to main signal
 		*/ 
+		
+		float sig = 0.f;
 		for(int i = 1; i < NUM_OSC; i++) {
-2000043c:	d1b0      	bne.n	200003a0 <_hook_cycle+0x2f6>
+2000043c:	d1b4      	bne.n	200003a8 <_hook_cycle+0x2fe>
    * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-2000043e:	eefc 7ae5 	vcvt.u32.f32	s15, s11
-20000442:	eebf da00 	vmov.f32	s26, #240	; 0xbf800000 -1.0
-20000446:	eef8 7a67 	vcvt.f32.u32	s15, s15
-2000044a:	ee75 7ae7 	vsub.f32	s15, s11, s15
-2000044e:	ee67 7aa2 	vmul.f32	s15, s15, s5
+2000043e:	eebc 7ae5 	vcvt.u32.f32	s14, s11
+			sig += secondary_mix * osc_bl2_sawf(phi[i], index);
+		}
+		sig *= AMP_CORRECTION;
+		main_sig += sig;
+20000442:	eeed 7a0c 	vfma.f32	s15, s26, s24
+20000446:	eeb8 7a47 	vcvt.f32.u32	s14, s14
+2000044a:	eeff ca00 	vmov.f32	s25, #240	; 0xbf800000 -1.0
+2000044e:	ee35 7ac7 	vsub.f32	s14, s11, s14
+20000452:	ee27 7a22 	vmul.f32	s14, s14, s5
     const uint32_t x0p = (uint32_t)x0f;
-20000452:	eefc 6ae7 	vcvt.u32.f32	s13, s15
-20000456:	ee16 9a90 	vmov	r9, s13
+20000456:	eefc 6ac7 	vcvt.u32.f32	s13, s14
+2000045a:	ee16 9a90 	vmov	r9, s13
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
-2000045a:	f1b9 0f7f 	cmp.w	r9, #127	; 0x7f
+2000045e:	f1b9 0f7f 	cmp.w	r9, #127	; 0x7f
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
-2000045e:	bf87      	ittee	hi
-20000460:	f009 007f 	andhi.w	r0, r9, #127	; 0x7f
-20000464:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
+20000462:	bf86      	itte	hi
+20000464:	f009 007f 	andhi.w	r0, r9, #127	; 0x7f
+20000468:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
-20000468:	46c8      	movls	r8, r9
-2000046a:	f109 0001 	addls.w	r0, r9, #1
+2000046c:	46c8      	movls	r8, r9
+      x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
+      x1 = x0 - 1;
+      sign = -1.f;
+    }
+    const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
+    const float fr = x0f - x0p;
+2000046e:	ee0d 9a10 	vmov	s26, r9
+    const float p = x - (uint32_t)x;
+    
+    const float x0f = 2.f * p * k_wt_saw_size;
+    const uint32_t x0p = (uint32_t)x0f;
+    
+    uint32_t x0 = x0p, x1 = x0p+1;
+20000472:	bf94      	ite	ls
+20000474:	f109 0001 	addls.w	r0, r9, #1
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
-2000046e:	bf88      	it	hi
-20000470:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
+20000478:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-20000474:	ea4f 0888 	mov.w	r8, r8, lsl #2
-20000478:	eb03 0908 	add.w	r9, r3, r8
-2000047c:	ea4f 0080 	mov.w	r0, r0, lsl #2
+2000047c:	ea4f 0888 	mov.w	r8, r8, lsl #2
+20000480:	eb03 0908 	add.w	r9, r3, r8
+20000484:	ea4f 0080 	mov.w	r0, r0, lsl #2
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-20000480:	eef8 6a66 	vcvt.f32.u32	s13, s13
+20000488:	eeb8 da4d 	vcvt.f32.u32	s26, s26
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
-20000484:	ed99 ea00 	vldr	s28, [r9]
-20000488:	eb03 0900 	add.w	r9, r3, r0
+2000048c:	edd9 da00 	vldr	s27, [r9]
+20000490:	eb03 0900 	add.w	r9, r3, r0
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-2000048c:	ee77 6ae6 	vsub.f32	s13, s15, s13
-20000490:	edd9 7a00 	vldr	s15, [r9]
-20000494:	ee77 7ace 	vsub.f32	s15, s15, s28
+20000494:	ee37 da4d 	vsub.f32	s26, s14, s26
+20000498:	ed99 7a00 	vldr	s14, [r9]
+2000049c:	ee37 7a6d 	vsub.f32	s14, s14, s27
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
-20000498:	4428      	add	r0, r5
-2000049a:	44a8      	add	r8, r5
-2000049c:	eea6 eaa7 	vfma.f32	s28, s13, s15
-		
-		/*
-		* Get band-limited sub-osc sawtooth wave sample for given
-		* phase and wave index.
+200004a0:	4428      	add	r0, r5
+200004a2:	44a8      	add	r8, r5
+200004a4:	eeed da07 	vfma.f32	s27, s26, s14
+		*
 		*/ 
+		
+		// =========================================================
+		
 		const float subsig = 0.5f * osc_bl2_sawf(phisub, index);
-200004a0:	edd0 ea00 	vldr	s29, [r0]
-200004a4:	edd8 7a00 	vldr	s15, [r8]
-200004a8:	ee7e eae7 	vsub.f32	s29, s29, s15
+200004a8:	ed90 ea00 	vldr	s28, [r0]
+200004ac:	ed98 7a00 	vldr	s14, [r8]
+200004b0:	ee3e ea47 	vsub.f32	s28, s28, s14
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
-200004ac:	bf98      	it	ls
-200004ae:	eef7 da00 	vmovls.f32	s27, #112	; 0x3f800000  1.0
-200004b2:	eee6 7aae 	vfma.f32	s15, s13, s29
+200004b4:	bf98      	it	ls
+200004b6:	eef7 6a00 	vmovls.f32	s13, #112	; 0x3f800000  1.0
+200004ba:	eead 7a0e 	vfma.f32	s14, s26, s28
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
-200004b6:	bf88      	it	hi
-200004b8:	eef0 da4d 	vmovhi.f32	s27, s26
-200004bc:	ee67 6aad 	vmul.f32	s13, s15, s27
-200004c0:	eeee 6a6d 	vfms.f32	s13, s28, s27
-200004c4:	ee66 6aac 	vmul.f32	s13, s13, s25
-200004c8:	eeee 6a2d 	vfma.f32	s13, s28, s27
+200004be:	bf88      	it	hi
+200004c0:	eef0 6a6c 	vmovhi.f32	s13, s25
+200004c4:	ee27 7a26 	vmul.f32	s14, s14, s13
+200004c8:	eead 7ae6 	vfms.f32	s14, s27, s13
+200004cc:	ee27 7a2e 	vmul.f32	s14, s14, s29
+200004d0:	eead 7aa6 	vfma.f32	s14, s27, s13
 		
 		// Apply submix, can set as dominant or inaudible.
-		main_sig = (1.f - submix) * main_sig + (submix * subsig);
-200004cc:	ee74 dae1 	vsub.f32	s27, s9, s3
 		
-		/*
-		* Get band-limited sub-osc sawtooth wave sample for given
-		* phase and wave index.
+		// =========================================================
+		
+		main_sig = (1.f - submix) * main_sig + (submix * subsig);
+200004d4:	ee74 6ae1 	vsub.f32	s13, s9, s3
+		*
 		*/ 
+		
+		// =========================================================
+		
 		const float subsig = 0.5f * osc_bl2_sawf(phisub, index);
-200004d0:	ee66 6aa3 	vmul.f32	s13, s13, s7
+200004d8:	ee27 7a23 	vmul.f32	s14, s14, s7
 		
 		// Apply submix, can set as dominant or inaudible.
+		
+		// =========================================================
+		
 		main_sig = (1.f - submix) * main_sig + (submix * subsig);
-200004d4:	ee61 7aa6 	vmul.f32	s15, s3, s13
-200004d8:	eee7 7a2d 	vfma.f32	s15, s14, s27
-200004dc:	eeb0 7a67 	vmov.f32	s14, s15
+200004dc:	ee21 da87 	vmul.f32	s26, s3, s14
+200004e0:	eea7 daa6 	vfma.f32	s26, s15, s13
    * @return        Wave sample.
    */
   __fast_inline float osc_bl2_sawf(float x, float idx) {
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
-200004e0:	eefc 7ac6 	vcvt.u32.f32	s15, s12
-200004e4:	eef8 7a67 	vcvt.f32.u32	s15, s15
-200004e8:	ee76 7a67 	vsub.f32	s15, s12, s15
-200004ec:	ee67 7aa2 	vmul.f32	s15, s15, s5
+200004e4:	eefc 7ac6 	vcvt.u32.f32	s15, s12
+200004e8:	eef8 7a67 	vcvt.f32.u32	s15, s15
+200004ec:	ee76 7a67 	vsub.f32	s15, s12, s15
+200004f0:	ee67 7aa2 	vmul.f32	s15, s15, s5
     const uint32_t x0p = (uint32_t)x0f;
-200004f0:	eefc dae7 	vcvt.u32.f32	s27, s15
-200004f4:	ee1d 9a90 	vmov	r9, s27
+200004f4:	eefc 6ae7 	vcvt.u32.f32	s13, s15
+200004f8:	ee16 9a90 	vmov	r9, s13
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
-200004f8:	f1b9 0f7f 	cmp.w	r9, #127	; 0x7f
+200004fc:	f1b9 0f7f 	cmp.w	r9, #127	; 0x7f
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
-200004fc:	bf87      	ittee	hi
-200004fe:	f009 007f 	andhi.w	r0, r9, #127	; 0x7f
-20000502:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
+20000500:	bf87      	ittee	hi
+20000502:	f009 007f 	andhi.w	r0, r9, #127	; 0x7f
+20000506:	f1c0 0880 	rsbhi	r8, r0, #128	; 0x80
     const float p = x - (uint32_t)x;
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
-20000506:	46c8      	movls	r8, r9
-20000508:	f109 0001 	addls.w	r0, r9, #1
+2000050a:	46c8      	movls	r8, r9
+2000050c:	f109 0001 	addls.w	r0, r9, #1
     float sign = 1.f;
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
-2000050c:	bf88      	it	hi
-2000050e:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
+20000510:	bf88      	it	hi
+20000512:	f1c0 007f 	rsbhi	r0, r0, #127	; 0x7f
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-20000512:	eef8 da6d 	vcvt.f32.u32	s27, s27
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 20000516:	ea4f 0888 	mov.w	r8, r8, lsl #2
 2000051a:	eb03 0908 	add.w	r9, r3, r8
-2000051e:	ea4f 0080 	mov.w	r0, r0, lsl #2
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
     }
     const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
     const float fr = x0f - x0p;
-20000522:	ee77 eaed 	vsub.f32	s29, s15, s27
+2000051e:	eef8 6a66 	vcvt.f32.u32	s13, s13
     const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
+20000522:	ea4f 0080 	mov.w	r0, r0, lsl #2
 20000526:	edd9 da00 	vldr	s27, [r9]
 2000052a:	eb03 0900 	add.w	r9, r3, r0
-2000052e:	edd9 7a00 	vldr	s15, [r9]
-20000532:	ee77 7aed 	vsub.f32	s15, s15, s27
+      x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
+      x1 = x0 - 1;
+      sign = -1.f;
+    }
+    const float *wt = &wt_saw_lut_f[(uint16_t)idx*k_wt_saw_lut_size];
+    const float fr = x0f - x0p;
+2000052e:	ee77 7ae6 	vsub.f32	s15, s15, s13
+20000532:	edd9 6a00 	vldr	s13, [r9]
+20000536:	ee76 6aed 	vsub.f32	s13, s13, s27
+    const float y0 = sign * linintf(fr, wt[x0], wt[x1]);
 
     wt += k_wt_saw_lut_size;
     const float y1 = sign * linintf(fr, wt[x0], wt[x1]);
-20000536:	44a8      	add	r8, r5
-20000538:	4428      	add	r0, r5
-2000053a:	eeee daa7 	vfma.f32	s27, s29, s15
-		
-		/*
-		* Get band-limited super-osc sawtooth wave sample for given
-		* phase and wave index.
+2000053a:	44a8      	add	r8, r5
+2000053c:	4428      	add	r0, r5
+2000053e:	eee7 daa6 	vfma.f32	s27, s15, s13
+		*
 		*/ 
+		
+		// =========================================================
+		
 		const float supersig = 0.5f * osc_bl2_sawf(phisuper, index);
-2000053e:	ed90 fa00 	vldr	s30, [r0]
-20000542:	edd8 7a00 	vldr	s15, [r8]
-20000546:	ee3f fa67 	vsub.f32	s30, s30, s15
+20000542:	ed90 fa00 	vldr	s30, [r0]
+20000546:	edd8 6a00 	vldr	s13, [r8]
+2000054a:	ee3f fa66 	vsub.f32	s30, s30, s13
     
     const float x0f = 2.f * p * k_wt_saw_size;
     const uint32_t x0p = (uint32_t)x0f;
     
     uint32_t x0 = x0p, x1 = x0p+1;
     float sign = 1.f;
-2000054a:	bf98      	it	ls
-2000054c:	eeb7 ea00 	vmovls.f32	s28, #112	; 0x3f800000  1.0
-20000550:	eeee 7a8f 	vfma.f32	s15, s29, s30
+2000054e:	bf98      	it	ls
+20000550:	eeb7 ea00 	vmovls.f32	s28, #112	; 0x3f800000  1.0
+20000554:	eee7 6a8f 	vfma.f32	s13, s15, s30
     if (x0p >= k_wt_saw_size) {
       x0 = k_wt_saw_size - (x0p & k_wt_saw_mask);
       x1 = x0 - 1;
       sign = -1.f;
-20000554:	bf88      	it	hi
-20000556:	eebf ea00 	vmovhi.f32	s28, #240	; 0xbf800000 -1.0
-2000055a:	ee67 7a8e 	vmul.f32	s15, s15, s28
-2000055e:	eeed 7ace 	vfms.f32	s15, s27, s28
-20000562:	ee67 caac 	vmul.f32	s25, s15, s25
-20000566:	eeed ca8e 	vfma.f32	s25, s27, s28
+20000558:	bf88      	it	hi
+2000055a:	eebf ea00 	vmovhi.f32	s28, #240	; 0xbf800000 -1.0
+2000055e:	ee66 7a8e 	vmul.f32	s15, s13, s28
 		
 		// Apply supermix, can set from dominant to inaudible.
-		main_sig = (1.f - supermix) * main_sig + (supermix * supersig);
-2000056a:	ee34 eac1 	vsub.f32	s28, s9, s2
 		
-		/*
-		* Get band-limited super-osc sawtooth wave sample for given
-		* phase and wave index.
+		// =========================================================
+		
+		main_sig = (1.f - supermix) * main_sig + (supermix * supersig);
+20000562:	eef7 6a00 	vmov.f32	s13, #112	; 0x3f800000  1.0
+		*
 		*/ 
+		
+		// =========================================================
+		
 		const float supersig = 0.5f * osc_bl2_sawf(phisuper, index);
-2000056e:	ee6c 7aa3 	vmul.f32	s15, s25, s7
+20000566:	eeed 7ace 	vfms.f32	s15, s27, s28
+2000056a:	ee67 7aae 	vmul.f32	s15, s15, s29
+2000056e:	eeed 7a8e 	vfma.f32	s15, s27, s28
 		
 		// Apply supermix, can set from dominant to inaudible.
+		
+		// =========================================================
+		
 		main_sig = (1.f - supermix) * main_sig + (supermix * supersig);
-20000572:	eef7 ca00 	vmov.f32	s25, #112	; 0x3f800000  1.0
-20000576:	ee61 da27 	vmul.f32	s27, s2, s15
-2000057a:	eee7 da0e 	vfma.f32	s27, s14, s28
+20000572:	ee34 eac1 	vsub.f32	s28, s9, s2
+		*
+		*/ 
+		
+		// =========================================================
+		
+		const float supersig = 0.5f * osc_bl2_sawf(phisuper, index);
+20000576:	ee67 7aa3 	vmul.f32	s15, s15, s7
+		
+		// Apply supermix, can set from dominant to inaudible.
+		
+		// =========================================================
+		
+		main_sig = (1.f - supermix) * main_sig + (supermix * supersig);
+2000057a:	ee61 da27 	vmul.f32	s27, s2, s15
+2000057e:	eeed da0e 	vfma.f32	s27, s26, s28
 		
 		// Apply ringmix, can set as dominant or inaudible.
+		
+		// =========================================================
+		
 		main_sig = (1.f - ringmix) * main_sig + ringmix * (subsig * main_sig) + ringmix * (supersig * main_sig);
-2000057e:	ee66 6aad 	vmul.f32	s13, s13, s27
-		* phase and wave index.
-		*/ 
-		const float supersig = 0.5f * osc_bl2_sawf(phisuper, index);
+20000582:	ee27 7a2d 	vmul.f32	s14, s14, s27
 		
 		// Apply supermix, can set from dominant to inaudible.
+		
+		// =========================================================
+		
 		main_sig = (1.f - supermix) * main_sig + (supermix * supersig);
-20000582:	eeb0 7a6d 	vmov.f32	s14, s27
+20000586:	eeb0 da6d 	vmov.f32	s26, s27
 		
 		// Apply ringmix, can set as dominant or inaudible.
+		
+		// =========================================================
+		
 		main_sig = (1.f - ringmix) * main_sig + ringmix * (subsig * main_sig) + ringmix * (supersig * main_sig);
-20000586:	ee66 6a83 	vmul.f32	s13, s13, s6
-2000058a:	ee74 dac3 	vsub.f32	s27, s9, s6
-2000058e:	ee67 7a87 	vmul.f32	s15, s15, s14
-20000592:	eee7 6a2d 	vfma.f32	s13, s14, s27
-20000596:	eee3 6a27 	vfma.f32	s13, s6, s15
+2000058a:	ee27 7a03 	vmul.f32	s14, s14, s6
+2000058e:	ee74 dac3 	vsub.f32	s27, s9, s6
+20000592:	ee67 7a8d 	vmul.f32	s15, s15, s26
+20000596:	eead 7a2d 	vfma.f32	s14, s26, s27
+2000059a:	eea3 7a27 	vfma.f32	s14, s6, s15
 
 /** FSEL construct
  */
 static inline __attribute__((optimize("Ofast"),always_inline))
 float fsel(const float a, const float b, const float c) {
   return (a >= 0) ? b : c;
-2000059a:	eef4 6acd 	vcmpe.f32	s13, s26
-2000059e:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005a2:	eef0 7a66 	vmov.f32	s15, s13
-200005a6:	db07      	blt.n	200005b8 <_hook_cycle+0x50e>
-200005a8:	eef4 6aec 	vcmpe.f32	s13, s25
-200005ac:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
-200005b0:	bfa8      	it	ge
-200005b2:	eef0 7a6c 	vmovge.f32	s15, s25
-200005b6:	e001      	b.n	200005bc <_hook_cycle+0x512>
-200005b8:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
-		// Softclip signal before sending to buffer
-		main_sig = osc_softclipf(0.125f, main_sig);
+2000059e:	eeb4 7aec 	vcmpe.f32	s14, s25
+200005a2:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200005a6:	eef0 7a47 	vmov.f32	s15, s14
+200005aa:	db07      	blt.n	200005bc <_hook_cycle+0x512>
+200005ac:	eeb4 7ae6 	vcmpe.f32	s14, s13
+200005b0:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
+200005b4:	bfa8      	it	ge
+200005b6:	eef0 7a66 	vmovge.f32	s15, s13
+200005ba:	e001      	b.n	200005c0 <_hook_cycle+0x516>
+200005bc:	eeff 7a00 	vmov.f32	s15, #240	; 0xbf800000 -1.0
+		*
+		*/ 
 		
-		// Add frame to buffer
-		// Must be formatted in Q31 binary fixed point representation
+		// =========================================================
+		
 		*(y++) = f32_to_q31(main_sig);
-200005bc:	ee27 7aa7 	vmul.f32	s14, s15, s15
-200005c0:	eef4 6a00 	vmov.f32	s13, #64	; 0x3e000000  0.125
-200005c4:	ee27 7ac7 	vnmul.f32	s14, s15, s14
-200005c8:	f8df 807c 	ldr.w	r8, [pc, #124]	; 20000648 <_hook_cycle+0x59e>
-200005cc:	eee7 7a26 	vfma.f32	s15, s14, s13
-200005d0:	4608      	mov	r0, r1
-200005d2:	ee67 7a8c 	vmul.f32	s15, s15, s24
-200005d6:	eefd 7ae7 	vcvt.s32.f32	s15, s15
+200005c0:	ee27 7aa7 	vmul.f32	s14, s15, s15
+200005c4:	eef4 6a00 	vmov.f32	s13, #64	; 0x3e000000  0.125
+200005c8:	ee27 7ac7 	vnmul.f32	s14, s15, s14
+200005cc:	f8df 8078 	ldr.w	r8, [pc, #120]	; 20000648 <_hook_cycle+0x59e>
+200005d0:	eee7 7a26 	vfma.f32	s15, s14, s13
+200005d4:	4608      	mov	r0, r1
+200005d6:	eefe 7ae0 	vcvt.s32.f32	s15, s15, #31
 200005da:	ece7 7a01 	vstmia	r7!, {s15}
-		
 		// Update local Central and Side osc phases
+		
+		// =========================================================
+		
 		for(int i = 0; i < NUM_OSC; i++) {
 			phi[i] += s.w0[i];
 200005de:	ed90 7a00 	vldr	s14, [r0]
@@ -1211,90 +1309,100 @@ float fsel(const float a, const float b, const float c) {
 200005ee:	eeb8 7a47 	vcvt.f32.u32	s14, s14
 200005f2:	ee77 7ac7 	vsub.f32	s15, s15, s14
 200005f6:	ece0 7a01 	vstmia	r0!, {s15}
-		// Add frame to buffer
-		// Must be formatted in Q31 binary fixed point representation
-		*(y++) = f32_to_q31(main_sig);
 		
 		// Update local Central and Side osc phases
+		
+		// =========================================================
+		
 		for(int i = 0; i < NUM_OSC; i++) {
 200005fa:	4584      	cmp	ip, r0
 200005fc:	d1ef      	bne.n	200005de <_hook_cycle+0x534>
-			phi[i] += s.w0[i];
-			phi[i] -= (uint32_t)phi[i];
-		}
 		
 		// Update local sub-osc phase
+		
+		// =========================================================
+		
 		phisub += s.w0sub;
 200005fe:	ee75 5a85 	vadd.f32	s11, s11, s10
-		phisub -= (uint32_t)phisub;
 		
 		// Update local super-osc phase
+		
+		// =========================================================
+		
 		phisuper += s.w0super;
 20000602:	ee36 6a02 	vadd.f32	s12, s12, s4
-			phi[i] -= (uint32_t)phi[i];
-		}
-		
 		// Update local sub-osc phase
+		
+		// =========================================================
+		
 		phisub += s.w0sub;
 		phisub -= (uint32_t)phisub;
 20000606:	eefc 7ae5 	vcvt.u32.f32	s15, s11
-		// Update local super-osc phase
-		phisuper += s.w0super;
-		phisuper -= (uint32_t)phisuper;
 		
 		// Update local LFO
+		
+		// =========================================================
+		
 		lfoz += lfo_inc;
 2000060a:	ee34 4a00 	vadd.f32	s8, s8, s0
-			phi[i] -= (uint32_t)phi[i];
-		}
-		
 		// Update local sub-osc phase
+		
+		// =========================================================
+		
 		phisub += s.w0sub;
 		phisub -= (uint32_t)phisub;
 2000060e:	eef8 7a67 	vcvt.f32.u32	s15, s15
 20000612:	ee75 5ae7 	vsub.f32	s11, s11, s15
-		
 		// Update local super-osc phase
+		
+		// =========================================================
+		
 		phisuper += s.w0super;
 		phisuper -= (uint32_t)phisuper;
 20000616:	eefc 7ac6 	vcvt.u32.f32	s15, s12
 2000061a:	eef8 7a67 	vcvt.f32.u32	s15, s15
 2000061e:	ee36 6a67 	vsub.f32	s12, s12, s15
-	// Prepare to load buffer.
-	q31_t *__restrict y = (q31_t*)yn; // y is buffer start position.
-	const q31_t *y_e = y + frames; // y_e is buffer end position.
+	// =========================================================
 	
 	// Load the buffer.
+	
+	// =========================================================
 	for (; y != y_e; ) {
 20000622:	e61e      	b.n	20000262 <_hook_cycle+0x1b8>
-		lfoz += lfo_inc;
-	}
 	
 	// Update global Central and Side osc phases
+	
+	// =========================================================
 	for(int i = 0; i < NUM_OSC; i++) {
 		s.phi[i] = phi[i];
 20000624:	f851 3b04 	ldr.w	r3, [r1], #4
 20000628:	f846 3b04 	str.w	r3, [r6], #4
-		// Update local LFO
-		lfoz += lfo_inc;
-	}
+	// =========================================================
 	
 	// Update global Central and Side osc phases
+	
+	// =========================================================
 	for(int i = 0; i < NUM_OSC; i++) {
 2000062c:	45b6      	cmp	lr, r6
 2000062e:	d1f9      	bne.n	20000624 <_hook_cycle+0x57a>
-		s.phi[i] = phi[i];
-	}
 	
 	// Update global sub and super wave phases
+	
+	// =========================================================
+	
 	s.phisub = phisub;
 20000630:	edc4 5a08 	vstr	s11, [r4, #32]
 	s.phisuper = phisuper;
 20000634:	ed84 6a07 	vstr	s12, [r4, #28]
 	
 	// Update global final LFO state
+	
+	// =========================================================
+	
 	s.lfoz = lfoz;
 20000638:	ed84 4a13 	vstr	s8, [r4, #76]	; 0x4c
+	
+	// =========================================================
 }
 2000063c:	b00a      	add	sp, #40	; 0x28
 2000063e:	ecbd 8b10 	vpop	{d8-d15}
@@ -1308,6 +1416,7 @@ float fsel(const float a, const float b, const float c) {
 2000064e <_hook_off>:
 
 void OSC_NOTEON(const user_osc_param_t *const params) {
+	(void)params;
 }
 
 void OSC_NOTEOFF(const user_osc_param_t *const params) {
@@ -1319,21 +1428,22 @@ void OSC_NOTEOFF(const user_osc_param_t *const params) {
 
 void OSC_PARAM(uint16_t index, uint16_t value) { 
 20000650:	ee07 1a90 	vmov	s15, r1
-	// Create local copies of the state and params objects.
-	UberSaw::Params &p = ubersaw.params;
-	UberSaw::State &s = ubersaw.state;
-
+	
 	// Update parameter values from user control input
+	
+	// =========================================================
+	
 	switch (index) {
 20000654:	2807      	cmp	r0, #7
 20000656:	d879      	bhi.n	2000074c <_hook_param+0xfc>
 20000658:	e8df f000 	tbb	[pc, r0]
 2000065c:	553a1f04 	.word	0x553a1f04
 20000660:	6f657878 	.word	0x6f657878
-		case k_user_osc_param_id1:
-			// Sub mix
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Sub mix
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.submix = clip01f(value * 0.01f); break; 
 20000664:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 20000668:	ed9f 7a39 	vldr	s14, [pc, #228]	; 20000750 <_hook_param+0x100>
@@ -1351,11 +1461,11 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 20000692:	4b31      	ldr	r3, [pc, #196]	; (20000758 <_hook_param+0x108>)
 20000694:	edc3 7a15 	vstr	s15, [r3, #84]	; 0x54
 20000698:	4770      	bx	lr
-			
-		case k_user_osc_param_id2:
-			// Super mix
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Super mix
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.supermix = clip01f(value * 0.01f); break; 
 2000069a:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 2000069e:	ed9f 7a2c 	vldr	s14, [pc, #176]	; 20000750 <_hook_param+0x100>
@@ -1373,11 +1483,11 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 200006c8:	4b23      	ldr	r3, [pc, #140]	; (20000758 <_hook_param+0x108>)
 200006ca:	edc3 7a16 	vstr	s15, [r3, #88]	; 0x58
 200006ce:	4770      	bx	lr
-			
-		case k_user_osc_param_id3:
-			// Ring mix
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Ring mix
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.ringmix = clip01f(value * 0.01f); break;
 200006d0:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 200006d4:	ed9f 7a1e 	vldr	s14, [pc, #120]	; 20000750 <_hook_param+0x100>
@@ -1395,42 +1505,42 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 200006fe:	4b16      	ldr	r3, [pc, #88]	; (20000758 <_hook_param+0x108>)
 20000700:	edc3 7a17 	vstr	s15, [r3, #92]	; 0x5c
 20000704:	4770      	bx	lr
-			
-		case k_user_osc_param_id4:
-			// Detune
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Detune
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.detune_value = value * 0.01f;
 20000706:	4b14      	ldr	r3, [pc, #80]	; (20000758 <_hook_param+0x108>)
 20000708:	ed9f 7a11 	vldr	s14, [pc, #68]	; 20000750 <_hook_param+0x100>
 			// Raise flag
 			s.flags |= UberSaw::flag_detune; break;
 2000070c:	f893 2050 	ldrb.w	r2, [r3, #80]	; 0x50
-			
-		case k_user_osc_param_id4:
-			// Detune
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Detune
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.detune_value = value * 0.01f;
 20000710:	eef8 7ae7 	vcvt.f32.s32	s15, s15
 			// Raise flag
 			s.flags |= UberSaw::flag_detune; break;
 20000714:	f042 0202 	orr.w	r2, r2, #2
-			
-		case k_user_osc_param_id4:
-			// Detune
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Detune
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.detune_value = value * 0.01f;
 20000718:	ee67 7a87 	vmul.f32	s15, s15, s14
 			// Raise flag
 			s.flags |= UberSaw::flag_detune; break;
 2000071c:	f883 2050 	strb.w	r2, [r3, #80]	; 0x50
-			
-		case k_user_osc_param_id4:
-			// Detune
-			// Percent parameter
-			// Scale in 0.0 - 1.00
+			/*
+			* Detune
+			* Percent parameter
+			* Scale in 0.0 - 1.00
+			*/ 
 			p.detune_value = value * 0.01f;
 20000720:	edc3 7a19 	vstr	s15, [r3, #100]	; 0x64
 			// Raise flag
@@ -1867,6 +1977,8 @@ void OSC_PARAM(uint16_t index, uint16_t value) {
 			
 		default: break;
 	}
+	
+	// =========================================================
 }
 20000a30:	b510      	push	{r4, lr}
 20000a32:	641a      	str	r2, [r3, #64]	; 0x40
