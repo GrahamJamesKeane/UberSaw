@@ -23,14 +23,14 @@ You can download the [ubersaw.ntkdigunit](https://github.com/GrahamJamesKeane/Ub
 Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/) the project. To do so, clone the repo and run the Makefile via MSYS (Windows 10). I have provided [tutorials](https://korgnts1beginnersguide.wordpress.com/setting-up-the-development-environment/) on the set-up and use of the various tools you'll need to do this on the project website.
 
 ## Other Platforms
-This oscillator was designed for the Nu:Tekt NTS-1. I have provided unit files for the Minilogue and Prologue. However, I am unable to test them and I cannot guarantee they will work.
+This oscillator was designed specifically for the Nu:Tekt NTS-1. The program has been tested on the Minilogue XD, and while the program functions its behaviour is not as intended. Based on this I recommend that this program only be used on the NTS-1 Nu:Tekt.
 
 ### Minilogue XD 
-If you intend to load this program to the Minilgoue XD please use the [ubersaw.mnlgxdunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_MXD/ubersaw.mnlgxdunit) located in the Minilogue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_MXD).
-
 ~~Note: Some users report that the Minilogue freezes when a note is played.~~
 
-Update: Minilogue test version is working, I have updated the main files. I need to confirm it is working as expected. The detune control doens't appear to be having the desired effect.
+~~Update: Minilogue test version is working, I have updated the main files. I need to confirm it is working as expected. The detune control doens't appear to be having the desired effect.~~
+
+Update: This program does not function correctly on the Minilogue XD,
 
 ### Prologue XD 
 If you intend to load this program to the Prologue please use the [ubersaw.prlgunit](https://github.com/GrahamJamesKeane/UberSaw/blob/main/ubersaw_PRO/ubersaw.prlgunit) located in the Prologue-specific build [folder](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_PRO).
