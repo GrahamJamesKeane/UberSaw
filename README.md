@@ -12,13 +12,13 @@ The oscillator features:
 - Phase drift control
 - LFO frequency and shape control
 
-The detune values are calculated using a detuine curve developed by Adam Szabo. Version 1.1 now introduces a detune value lookup table to reduce processor load. The mix control for the main oscillators allows the user to set the relative volume of the side oscillators to the central and can be modulated with an LFO.
+The detune values are calculated using a detuine curve developed by Adam Szabo. Version 1.1 now introduces a detune value lookup table to reduce processor load. The mix control for the main oscillators allows the user to set the relative volume of the side oscillators to the central oscillator and can be modulated with an LFO.
 
 The 2 secondary oscillators are linked to the pitch of the central oscillator and can now be tuned using the chord selection control to produce octave, fifth, major third, or minor third chords. Both of these secondary oscilators have their own mix controls. This provides a volume range from inaudible to dominant in the output signal. 
 
 The phase drift control allows the user to add a offest phase offset to the side and secondary oscillators.
 
-The ring modulation feature utilises the secondary oscillators to create the effect and can be set from inaudible to dominant in the output signal.
+The ring modulation feature is linked to the secondary oscillators and can be set from inaudible to dominant in the output signal.
 
 
 Oscillator Audio Sample (Version 1.0):
