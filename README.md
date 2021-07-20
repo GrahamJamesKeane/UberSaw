@@ -14,7 +14,7 @@ The oscillator features:
 - LFO frequency and shape control
 
 ## 2 - Updates
-The detune values are calculated using a detuine curve developed by Adam Szabo. Version 1.1 now introduces a detune value lookup table to reduce processor load. The mix control for the main oscillators allows the user to set the relative volume of the side oscillators to the central oscillator and can be modulated with an LFO.
+The detune values are calculated using a detune curve developed by Adam Szabo. Version 1.1 now introduces a detune value lookup table to reduce processor load. The mix control for the main oscillators allows the user to set the relative volume of the side oscillators to the central oscillator and can be modulated with an LFO.
 
 The 2 secondary oscillators are linked to the pitch of the central oscillator and can now be tuned using the chord selection control to produce octave, fifth, major third, or minor third chords. Both of these secondary oscilators have their own mix controls. This provides a volume range from inaudible to dominant in the output signal. 
 
