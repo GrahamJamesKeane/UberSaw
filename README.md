@@ -21,16 +21,16 @@ The phase drift control allows the user to add a offest phase offset to the side
 The ring modulation feature is linked to the secondary oscillators and can be set from inaudible to dominant in the output signal.
 
 
-Oscillator Audio Sample (Version 1.0):
+**Oscillator Audio Sample (Version 1.0):**
 https://soundcloud.com/graham-james-keane/ubersaw-demo-nts-1
 
-Build Video: (Version 1.0)
+**Build Video: (Version 1.0)**
 https://youtu.be/s0rdvLjd52w
 
-Build Article (Version 1.0):
+**Build Article (Version 1.0):**
 https://korgnts1beginnersguide.wordpress.com/?p=499
 
-Project Website:
+**Project Website:**
 https://korgnts1beginnersguide.wordpress.com/
 
 ## Controls (Version 1.1)
@@ -48,5 +48,3 @@ Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/20
 
 ## Other Platforms
 This oscillator was designed specifically for the Nu:Tekt NTS-1. The program has been tested on the Minilogue XD, and while the program functions its behaviour is not as intended. Based on this I currently recommend that this program only be used on the NTS-1 Nu:Tekt.
-
-Note: This is currently untested on the Prologue.
