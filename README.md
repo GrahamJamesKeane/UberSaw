@@ -46,4 +46,8 @@ You can download the [ubersaw.ntkdigunit](https://github.com/GrahamJamesKeane/Ub
 Alternatively, you can [rebuild](https://korgnts1beginnersguide.wordpress.com/2021/07/06/compiling-and-loading-our-first-custom-project-the-waves-demo/) the project. To do so, clone either [version 1.0](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_v1.0) or [version 1.1](https://github.com/GrahamJamesKeane/UberSaw/tree/main/ubersaw_v1.1) and run the Makefile via MSYS (Windows 10). I have provided [tutorials](https://korgnts1beginnersguide.wordpress.com/setting-up-the-development-environment/) on the set-up and use of the various tools you'll need to do this on the project website.
 
 ## Other Platforms
-This oscillator was designed specifically for the Nu:Tekt NTS-1. The program has been tested on the Minilogue XD, and while the program functions its behaviour is not as intended. Based on this I currently recommend that this program only be used on the NTS-1 Nu:Tekt.
+This oscillator was designed specifically for the Nu:Tekt NTS-1. 
+
+Version 1.0 was tested on the Minilogue and while the program functions its behaviour is not as intended. This version is untested on the Prologue.
+
+Version 1.1 is untested on both the Minilogue XD and Prologue.
