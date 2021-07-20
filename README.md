@@ -24,7 +24,7 @@ The ring modulation feature is linked to the secondary oscillators and can be se
 **Oscillator Audio Sample (Version 1.0):**
 https://soundcloud.com/graham-james-keane/ubersaw-demo-nts-1
 
-**Build Video: (Version 1.0)**
+**Build Video: (Version 1.0):**
 https://youtu.be/s0rdvLjd52w
 
 **Build Article (Version 1.0):**
