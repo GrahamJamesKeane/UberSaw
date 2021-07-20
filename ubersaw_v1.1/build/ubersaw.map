@@ -1,0 +1,259 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                              ./build/obj/ubersaw_v1.1.o (memcpy)
+
+Discarded input sections
+
+ .group         0x00000000        0x8 ./build/obj/ubersaw_v1.1.o
+ .group         0x00000000        0x8 ./build/obj/ubersaw_v1.1.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00008000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./build/obj/_unit.o
+LOAD ./build/obj/ubersaw_v1.1.o
+
+.hooks          0x20000000       0x40
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _hooks_start = .
+ *(.hooks)
+ .hooks         0x20000000       0x40 ./build/obj/_unit.o
+                0x20000040                . = ALIGN (0x4)
+                0x20000040                _hooks_end = .
+
+.init_array     0x20000040        0x4
+                0x20000040                . = ALIGN (0x4)
+                0x20000040                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array*)
+ .init_array    0x20000040        0x4 ./build/obj/ubersaw_v1.1.o
+                0x20000044                . = ALIGN (0x4)
+                0x20000044                PROVIDE (__init_array_end, .)
+
+.text           0x20000048      0xa40
+                0x20000048                . = ALIGN (0x4)
+                0x20000048                _text_start = .
+ *(.text)
+ .text          0x20000048       0x60 ./build/obj/_unit.o
+                0x2000004a                _hook_mute
+                0x2000004c                _hook_value
+                0x20000056                _entry
+ .text          0x200000a8      0x6cc ./build/obj/ubersaw_v1.1.o
+                0x200000a8                _hook_init
+                0x200000aa                _hook_cycle
+                0x20000630                _hook_on
+                0x20000632                _hook_off
+                0x20000634                _hook_param
+ .text          0x20000774      0x134 c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                0x20000774                memcpy
+ *(.text.*)
+ .text._ZN7UberSaw16buildDetuneTableEv
+                0x200008a8      0x160 ./build/obj/ubersaw_v1.1.o
+                0x200008a8                UberSaw::buildDetuneTable()
+ .text._ZN7UberSawC2Ev
+                0x20000a08       0x66 ./build/obj/ubersaw_v1.1.o
+                0x20000a08                UberSaw::UberSaw()
+                0x20000a08                UberSaw::UberSaw()
+ *fill*         0x20000a6e        0x2 
+ .text.startup  0x20000a70       0x10 ./build/obj/ubersaw_v1.1.o
+ .text.startup.__stub
+                0x20000a80        0x8 linker stubs
+ *(.glue_7)
+ .glue_7        0x20000a88        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x20000a88        0x0 linker stubs
+ *(.gcc*)
+                0x20000a88                . = ALIGN (0x4)
+                0x20000a88                _text_end = .
+
+.vfp11_veneer   0x20000a88        0x0
+ .vfp11_veneer  0x20000a88        0x0 linker stubs
+
+.v4_bx          0x20000a88        0x0
+ .v4_bx         0x20000a88        0x0 linker stubs
+
+.iplt           0x20000a88        0x0
+ .iplt          0x20000a88        0x0 ./build/obj/_unit.o
+
+.rel.dyn        0x20000a88        0x0
+ .rel.iplt      0x20000a88        0x0 ./build/obj/_unit.o
+
+.rodata         0x20000a88        0x0
+                0x20000a88                . = ALIGN (0x4)
+                0x20000a88                _rodata_start = .
+ *(.rodata)
+ *(.rodata.*)
+                0x20000a88                . = ALIGN (0x4)
+                0x20000a88                _rodata_end = .
+
+.data           0x20000a88        0x0
+                0x20000a88                . = ALIGN (0x8)
+                0x20000a88                _data_start = .
+ *(.data)
+ .data          0x20000a88        0x0 ./build/obj/_unit.o
+ .data          0x20000a88        0x0 ./build/obj/ubersaw_v1.1.o
+ .data          0x20000a88        0x0 c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+ *(.data.*)
+                0x20000a88                . = ALIGN (0x8)
+                0x20000a88                _data_end = .
+
+.igot.plt       0x20000a88        0x0
+ .igot.plt      0x20000a88        0x0 ./build/obj/_unit.o
+
+.bss            0x20000a88      0x200
+                0x20000a88                . = ALIGN (0x4)
+                0x20000a88                _bss_start = .
+ *(.bss)
+ .bss           0x20000a88        0x0 ./build/obj/_unit.o
+ .bss           0x20000a88      0x200 ./build/obj/ubersaw_v1.1.o
+ .bss           0x20000c88        0x0 c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+ *(.bss.*)
+ *(COMMON)
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                _bss_end = .
+
+.ARM.extab      0x20000c88        0x0
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                __extab_start = .
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                __extab_end = .
+
+.ARM.exidx      0x20000c88        0x0
+                0x20000c88                __exidx_start = .
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x20000c88                __exidx_end = .
+
+.eh_frame_hdr   0x20000c88        0x0
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                _eh_frame_hdr_start = .
+ *(.eh_frame_hdr)
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                _eh_frame_hdr_end = .
+
+.eh_frame       0x20000c88        0x0
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                _eh_frame_start = .
+ *(.eh_frame)
+                0x20000c88                . = ALIGN (0x4)
+                0x20000c88                _eh_frame_end = .
+LOAD ./ld/osc_api.syms
+                0x0800f000                k_osc_api_version = 0x800f000
+                0x0800f004                k_osc_api_platform = 0x800f004
+                0x0800f100                midi_to_hz_lut_f = 0x800f100
+                0x0800f360                sqrtm2log_lut_f = 0x800f360
+                0x0800f764                tanpi_lut_f = 0x800f764
+                0x0800fb68                log_lut_f = 0x800fb68
+                0x0800ff6c                bitres_lut_f = 0x800ff6c
+                0x08010170                wt_par_lut_f = 0x8010170
+                0x08010f8c                wt_par_notes = 0x8010f8c
+                0x08010f94                wt_sqr_lut_f = 0x8010f94
+                0x08011db0                wt_sqr_notes = 0x8011db0
+                0x08011db8                wt_saw_lut_f = 0x8011db8
+                0x08012bd4                wt_saw_notes = 0x8012bd4
+                0x08012bdc                wt_sine_lut_f = 0x8012bdc
+                0x08012de0                schetzen_lut_f = 0x8012de0
+                0x08012fe4                cubicsat_lut_f = 0x8012fe4
+                0x080131e8                wavesA = 0x80131e8
+                0x0801546c                wavesB = 0x801546c
+                0x080174ec                wavesC = 0x80174ec
+                0x0801915c                wavesD = 0x801915c
+                0x0801abc4                wavesE = 0x801abc4
+                0x0801ca3c                wavesF = 0x801ca3c
+                0x0801eabc                _osc_mcu_hash = 0x801eabc
+                0x0801eac8                _osc_bl_saw_idx = 0x801eac8
+                0x0801ebb0                _osc_bl_sqr_idx = 0x801ebb0
+                0x0801ec98                _osc_bl_par_idx = 0x801ec98
+                0x0801ed80                _osc_rand = 0x801ed80
+                0x0801edb8                _osc_white = 0x801edb8
+LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libm.a
+START GROUP
+LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/armv7e-m/fpu\libgcc.a
+LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a
+LOAD c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a
+END GROUP
+OUTPUT(build/ubersaw.elf elf32-littlearm)
+
+.debug_info     0x00000000     0x1bc6
+ .debug_info    0x00000000      0x6a4 ./build/obj/_unit.o
+ .debug_info    0x000006a4     0x1522 ./build/obj/ubersaw_v1.1.o
+
+.debug_abbrev   0x00000000      0x665
+ .debug_abbrev  0x00000000      0x20e ./build/obj/_unit.o
+ .debug_abbrev  0x0000020e      0x457 ./build/obj/ubersaw_v1.1.o
+
+.debug_loc      0x00000000     0x11ea
+ .debug_loc     0x00000000       0xb9 ./build/obj/_unit.o
+ .debug_loc     0x000000b9     0x1131 ./build/obj/ubersaw_v1.1.o
+
+.debug_aranges  0x00000000       0x58
+ .debug_aranges
+                0x00000000       0x20 ./build/obj/_unit.o
+ .debug_aranges
+                0x00000020       0x38 ./build/obj/ubersaw_v1.1.o
+
+.debug_line     0x00000000      0x8a3
+ .debug_line    0x00000000      0x204 ./build/obj/_unit.o
+ .debug_line    0x00000204      0x69f ./build/obj/ubersaw_v1.1.o
+
+.debug_str      0x00000000      0xab1
+ .debug_str     0x00000000      0x5dd ./build/obj/_unit.o
+                                0x66a (size before relaxing)
+ .debug_str     0x000005dd      0x4d4 ./build/obj/ubersaw_v1.1.o
+                                0x7f9 (size before relaxing)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e ./build/obj/_unit.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f ./build/obj/ubersaw_v1.1.o
+
+.ARM.attributes
+                0x00000000       0x37
+ .ARM.attributes
+                0x00000000       0x39 ./build/obj/_unit.o
+ .ARM.attributes
+                0x00000039       0x39 ./build/obj/ubersaw_v1.1.o
+ .ARM.attributes
+                0x00000072       0x20 c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+
+.debug_frame    0x00000000      0x218
+ .debug_frame   0x00000000       0xa8 ./build/obj/_unit.o
+ .debug_frame   0x000000a8      0x170 ./build/obj/ubersaw_v1.1.o
+
+.debug_ranges   0x00000000      0x428
+ .debug_ranges  0x00000000      0x428 ./build/obj/ubersaw_v1.1.o
+
+Cross Reference Table
+
+Symbol                                            File
+UberSaw::UberSaw()                                ./build/obj/ubersaw_v1.1.o
+UberSaw::UberSaw()                                ./build/obj/ubersaw_v1.1.o
+UberSaw::buildDetuneTable()                       ./build/obj/ubersaw_v1.1.o
+__init_array_end                                  ./build/obj/_unit.o
+__init_array_start                                ./build/obj/_unit.o
+_bss_end                                          ./build/obj/_unit.o
+_bss_start                                        ./build/obj/_unit.o
+_entry                                            ./build/obj/_unit.o
+_hook_cycle                                       ./build/obj/ubersaw_v1.1.o
+                                                  ./build/obj/_unit.o
+_hook_init                                        ./build/obj/ubersaw_v1.1.o
+                                                  ./build/obj/_unit.o
+_hook_mute                                        ./build/obj/_unit.o
+_hook_off                                         ./build/obj/ubersaw_v1.1.o
+                                                  ./build/obj/_unit.o
+_hook_on                                          ./build/obj/ubersaw_v1.1.o
+                                                  ./build/obj/_unit.o
+_hook_param                                       ./build/obj/ubersaw_v1.1.o
+                                                  ./build/obj/_unit.o
+_hook_value                                       ./build/obj/_unit.o
+_osc_bl_saw_idx                                   ./build/obj/ubersaw_v1.1.o
+memcpy                                            c:/msys64/home/logue-sdk/tools/gcc/gcc-arm-none-eabi-5_4-2016q3/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libg.a(lib_a-memcpy.o)
+                                                  ./build/obj/ubersaw_v1.1.o
+midi_to_hz_lut_f                                  ./build/obj/ubersaw_v1.1.o
+wt_saw_lut_f                                      ./build/obj/ubersaw_v1.1.o

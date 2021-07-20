@@ -1,0 +1,20 @@
+{
+    "header" : 
+    {
+        "platform" : "nutekt-digital",
+        "module" : "osc",
+        "api" : "1.1-0",
+        "dev_id" : 0,
+        "prg_id" : 0,
+        "version" : "1.1-1",
+        "name" : "ubersaw",
+        "num_param" : 5,
+        "params" : [
+            ["Mix A",     	0, 100, "%"],
+			["Mix B",   	0, 100, "%"],
+            ["Ring Mix",    0, 100, "%"],
+			["Detune",      0, 100, "%"],
+			["Chord",       1, 4, "%"]
+          ]
+    }
+}
