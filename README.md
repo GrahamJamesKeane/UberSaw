@@ -37,7 +37,8 @@ https://korgnts1beginnersguide.wordpress.com/
 
 ## 3 - Controls (Version 1.1)
 
-![ubersaw controls 2](https://user-images.githubusercontent.com/40239414/126349756-71f3da96-5e6a-4e77-af75-cdd304ef655b.png)
+![ubersaw controls 2 1](https://user-images.githubusercontent.com/40239414/126568507-7c4d1e99-f671-4021-91cf-c74cdcc5e640.png)
+
 
 ## 4 - NTS-1 Installation Instructions 
 
