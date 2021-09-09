@@ -36,14 +36,6 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	
 	// =========================================================
 	
-	// Get wave index.
-	
-	// =========================================================
-	
-	const float index = osc_bl_saw_idx(note);
-	
-	// =========================================================
-	
 	// Update pitches.
 	
 	// =========================================================
@@ -51,6 +43,12 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 	ubersaw.updatePitch(osc_w0f_for_note(note, params->pitch & 0xFF));
 	
 	// =========================================================
+
+    // Get the HPF object.
+
+    dsp::BiQuad &HPF = ubersaw.HPF;
+
+    // =========================================================
 	
 	// Get the current LFO value.
 	
@@ -121,11 +119,11 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		
 		// =========================================================
 		
-		// Get mix control value, range [0-1].
+		// Get LFO modulated mix control value, range [0-1].
 		
 		// =========================================================
 		
-		const float wavemix = clipminmaxf(0.00f, p.shape+lfoz, 1.f);
+		const float wavemix = clip01f(p.shape + lfoz);
 		
 		// =========================================================
 		
@@ -139,20 +137,20 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		// =========================================================
 		
 		/*
-		* Get band-limited primary sawtooth wave sample for given
-		* phase and wave index, then apply primary mix.
+		* Get primary sawtooth wave sample for given
+		* phase, then apply primary mix.
 		*
 		*/ 
 		
 		// =========================================================
 		
-		float main_sig = primary_mix * osc_bl2_sawf(phi[0], index);
+		float main_sig = primary_mix * osc_sawf(phi[0]);
 		
 		// =========================================================
 		
 		/*
-		* Get band-limited secondary sawtooth wave samples for given
-		* phases and wave indices, then apply secondary mix.
+		* Get secondary sawtooth wave samples for given
+		* phases, then apply secondary mix.
 		* Need to correct amplitude to prevent clipping.
 		*/ 
 		
@@ -160,7 +158,7 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		
 		float sig = 0.f;
 		for(int i = 1; i < NUM_OSC; i++) {
-			sig += secondary_mix * osc_bl2_sawf(phi[i], index);
+			sig += secondary_mix * osc_sawf(phi[i]);
 		}
 		
 		sig *= AMP_CORRECTION;
@@ -169,13 +167,13 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		// =========================================================
 		
 		/*
-		* Get band-limited sawtooth wave sample for given
-		* phase and wave index for Secondary oscillator A.
+		* Get sawtooth wave sample for given
+		* phase for Secondary oscillator A.
 		*/ 
 		
 		// =========================================================
 		
-		const float sig_A = 0.5f * osc_bl2_sawf(phiA, index);
+		const float sig_A = 0.5f * osc_sawf(phiA);
 		
 		// =========================================================
 		
@@ -188,13 +186,13 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		// =========================================================
 		
 		/*
-		* Get band-limited sawtooth wave sample for given
-		* phase and wave index for Secondary oscillator B.
+		* Get sawtooth wave sample for given
+		* phase for Secondary oscillator B.
 		*/ 
 		
 		// =========================================================
 		
-		const float sig_B = 0.5f * osc_bl2_sawf(phiB, index);
+		const float sig_B = 0.5f * osc_sawf(phiB);
 		
 		// =========================================================
 		
@@ -213,7 +211,15 @@ void OSC_CYCLE(const user_osc_param_t *const params, int32_t *yn, const uint32_t
 		main_sig = (1.f - ringmix) * main_sig + ringmix * (sig_A * main_sig) + ringmix * (sig_B * main_sig);
 		
 		// =========================================================
-		
+
+        // Apply HPF
+
+        // =========================================================
+
+        main_sig = HPF.process_fo(main_sig);
+
+        // =========================================================
+
 		// Softclip signal before sending to buffer
 		
 		// =========================================================

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "userosc.h"
+#include "biquad.hpp"
 
 // =========================================================
 // Number of main oscillators (primary + side)
@@ -160,6 +161,9 @@ struct UberSaw {
 		float chord = params.chord;
 		state.w0A = (chord * w0) + (drift * SUB_DRIFT);
 		state.w0B = ((1.f / chord) * w0) + (drift * SUB_DRIFT);
+
+		// Set pole for HPF
+        HPF.mCoeffs.setPoleHP((1.f / chord) * w0);
 	}
 	
 	/* // =========================================================
@@ -257,4 +261,5 @@ struct UberSaw {
 
 	State 	state;
 	Params 	params;
+    dsp::BiQuad HPF;
 };
